@@ -11,6 +11,7 @@ services:
             - DB_DATABASE=laravel
             - DB_USERNAME=root
             - DB_PASSWORD=root
+            - DB_PORT=3306
         volumes: 
             - .:/var/www
         networks: 
@@ -49,11 +50,11 @@ services:
             - MYSQL_USER=root
         networks: 
             - app-network
-        healthcheck:
-            test: ["CMD-SHELL", 'mysql -uroot --database=laravel --password=root --execute="SELECT count(table_name) > 0 FROM information_schema.tables;" --skip-column-names -B']
-            interval: 5s
-            timeout: 5s
-            retries: 5
+        #healthcheck:
+        #    test: ["CMD-SHELL", 'mysql -uroot --database=laravel --password=root --execute="SELECT count(table_name) > 0 FROM information_schema.tables;" --skip-column-names -B']
+        #    interval: 5s
+        #    timeout: 5s
+        #    retries: 5
 
     redis:
         image: redis:alpine
